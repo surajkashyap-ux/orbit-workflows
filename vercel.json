@@ -1,0 +1,43 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "ui/package.json",
+      "use": "@vercel/next"
+    },
+    {
+      "src": "api/*.go",
+      "use": "@vercel/go"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/health",
+      "dest": "/api/health.go"
+    },
+    {
+      "src": "/api/metrics",
+      "dest": "/api/metrics.go"
+    },
+    {
+      "src": "/api/workflows",
+      "dest": "/api/workflows.go"
+    },
+    {
+      "src": "/api/workflows/(?<id>[^/]+)/run",
+      "dest": "/api/workflows_run.go"
+    },
+    {
+      "src": "/api/runs/(?<id>[^/]+)",
+      "dest": "/api/runs.go"
+    },
+    {
+      "src": "/api/plugins",
+      "dest": "/api/plugins.go"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/ui/$1"
+    }
+  ]
+}
